@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { deleteTask } from '../../redux/features/task/taskSlice';
+import { Link } from 'react-router-dom'
 
 
 const taskList = () => {
@@ -12,7 +13,9 @@ const taskList = () => {
     }
     console.log(task, 'task')
   return (
-    <div>{
+    <div>
+        <Link to={'/create'} >Create task</Link>
+        {
         task.map(task => (
           <div key={task.id}>
             <h3>
@@ -22,6 +25,7 @@ const taskList = () => {
               {task.description}
             </p>
             <button onClick={() => handleDelete(task.id)}>delete</button>
+            <Link to={`edit-task/${task.id}`}> Edit Task </Link>
           </div>
 
         ))

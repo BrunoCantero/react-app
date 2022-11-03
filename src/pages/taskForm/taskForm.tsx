@@ -1,8 +1,10 @@
 import {useState} from 'react'
 import { useDispatch } from 'react-redux'
 import { addTask } from '../../redux/features/task/taskSlice'
+import { useNavigate } from 'react-router-dom'
 
 const taskForm = ()  => {
+    const navigate = useNavigate();
     const [task, setTask] = useState({
         title: '',
         description: ''
@@ -22,6 +24,7 @@ const taskForm = ()  => {
     const handleSubmit = (e: any) => {
       e.preventDefault()
       dispatch(addTask(task))
+      navigate('/')
     }
 
   return (
